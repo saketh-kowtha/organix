@@ -1,0 +1,62 @@
+{
+  "name": "nextjs-scaffolding",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev src/",
+    "build": "next build src/",
+    "start": "next run dev",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "talisman": "husky-talisman",
+    "pre-commit": "lint-staged && npm run talisman -- pre-commit && npm run test",
+    "serve:prod": "next start src/",
+    "clear": "rm -rf src/.next coverage/",
+    "clear:all": "npm run clear && rm -rf node_modules"
+  },
+  "dependencies": {
+    "next": "10.0.4",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "styled-breakpoints": "^9.0.8",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^7.29.0",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/react-hooks": "^3.7.0",
+    "@testing-library/user-event": "^12.6.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^26.6.3",
+    "babel-plugin-inline-react-svg": "^1.1.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "commit-message-validator": "^1.0.0",
+    "husky": "^4.3.6",
+    "husky-talisman": "^2.0.1",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.3",
+    "prettier-eslint": "^12.0.0",
+    "prettier-eslint-cli": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier-eslint --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commit-message-validator",
+      "pre-commit": "npm run pre-commit"
+    }
+  },
+  "config": {
+    "commit-message-validator": {
+      "_comment": "Pattern can be Regex string or array of Regex string",
+      "pattern": "\\[\\d+\\] \\| \\[.+\\] \\| .*",
+      "errorMessage": "  \n\n❌  Your commit message is invalid. Please author your commit in the following pattern:\n\n✅  [000] | [HUMAN 1/HUMAN 2] | Your awesome commit message.\n\n"
+    }
+  }
+}
